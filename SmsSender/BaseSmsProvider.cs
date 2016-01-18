@@ -38,7 +38,7 @@ namespace SmsSender
 
             if (smsRequest == null)
             {
-                validationMessage = string.Format("Sms Request Boş Olamaz |Provider Name {0} \n",ProviderName);
+                validationMessage = string.Format("Sms Request Boş Olamaz | Provider Name {0} \n",ProviderName);
                 return false;
             }
             if (string.IsNullOrWhiteSpace(smsRequest.Content))
@@ -49,23 +49,23 @@ namespace SmsSender
             if (string.IsNullOrWhiteSpace(smsRequest.Number))
             {
 
-                validationMessage = "Number Boş Olamaz";
+                validationMessage = string.Format("Number Boş Olamaz | Provider Name : {0} ", ProviderName); 
                 return false;
             }
             if (smsRequest.Content.Length < 3)
             {
-                validationMessage = "Content 3 karakterden az olamaz";
+                validationMessage = string.Format("Content 3 karakterden az olamaz | Provider Name : {0} ", ProviderName);
                 return false;
             }
             if (smsRequest.Content.Length > 160)
             {
-
-                validationMessage = "Content 160 karakterden fazla olamaz";
+                
+                validationMessage = string.Format("Content 160 karakterden fazla olamaz | Provider Name : {0} " ,ProviderName);
                 return false;
             }
             if (!Regex.IsMatch(smsRequest.Number, "905[0-9][1-9]{7}"))
             {
-                validationMessage = "Telefon numarası geçerli değil..!";
+                validationMessage = string.Format("Telefon numarası geçerli değil..! | Provider Name : {0} ", ProviderName);
                 return false;
             }
 
