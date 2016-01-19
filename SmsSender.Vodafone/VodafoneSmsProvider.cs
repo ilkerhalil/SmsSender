@@ -38,7 +38,7 @@ namespace SmsSender.Vodafone
             {
                 return new SmsResponse
                 {
-                    ProviderMessage = string.Format("Fail..! - {0}", e),
+                    ProviderMessage = $"Fail..! - {e}",
                     SmsStatus = SmsStatus.Fail
                 };
             }

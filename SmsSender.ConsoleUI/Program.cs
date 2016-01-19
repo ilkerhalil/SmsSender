@@ -4,7 +4,10 @@ using System.IO;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.Practices.Unity;
+using SmsSender.Avea;
 using SmsSender.IOC;
+using SmsSender.Turkcell;
+using SmsSender.Vodafone;
 
 namespace SmsSender.ConsoleUI
 {
@@ -16,6 +19,8 @@ namespace SmsSender.ConsoleUI
 
             //var parameters = new string[] { "", "", "" };
 
+
+            
 
             var providers = unityContainer.ResolveAll<ISmsProvider>().ToList();
             Console.WriteLine("Provider Seçiniz");
@@ -63,6 +68,15 @@ namespace SmsSender.ConsoleUI
 
             Console.ReadKey();
         }
+
+        //public ISmsProvider SmsProviderFactory(byte a)
+        //{
+        //    if(a== 1)return new AveaSmsProvider();
+        //    if(a==2)return new TurkcellSmsProvider();
+        //    if (a == 3) return new VodafoneSmsProvider();
+        //    throw new System.Exception();
+        //}
+
 
     }
 
