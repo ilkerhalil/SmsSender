@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using SmsSender.Exception;
 
 namespace SmsSender.Avea
 {
@@ -21,7 +22,7 @@ namespace SmsSender.Avea
         protected sealed override void ProviderInit()
         {
             var configurationSection = ConfigurationManager.GetSection("AveaSmsConfigSection") as AveaSmsProviderConfigSection;
-            if (configurationSection == null) throw new Exception("Configuration Section boş..!");
+            if (configurationSection == null) throw new SmsSenderException("Configuration Section boş..!",ProviderName);
             Header = configurationSection.Header;
             Password = configurationSection.Password;
             UserName = configurationSection.UserName;

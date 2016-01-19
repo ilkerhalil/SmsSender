@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.CodeDom;
+using System.Collections.Generic;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text.RegularExpressions;
+using SmsSender.Exception;
 
 namespace SmsSender
 {
@@ -13,6 +16,10 @@ namespace SmsSender
 
         public virtual IEnumerable<SmsResponse> SendSms(params SmsRequest[] smsRequests)
         {
+            if (string.IsNullOrWhiteSpace(UserName)) throw new SmsSenderException("User Name Boş olamaz", ProviderName);
+            if (string.IsNullOrWhiteSpace(Password)) throw new SmsSenderException("Password Boş olamaz", ProviderName);
+            if (string.IsNullOrWhiteSpace(Header)) throw new SmsSenderException("Header Boş olamaz", ProviderName);
+
             foreach (var smsRequest in smsRequests)
             {
                 string validationMessage;
@@ -68,5 +75,4 @@ namespace SmsSender
         protected abstract SmsResponse SendSms(SmsRequest smsRequest);
 
     }
-
 }

@@ -51,6 +51,7 @@
     <Compile Include="ISmsProvider.cs" />
     <Compile Include="BaseSmsProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Exception\SmsSenderException.cs" />
     <Compile Include="Types\SmsResponse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

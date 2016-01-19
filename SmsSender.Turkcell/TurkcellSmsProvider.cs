@@ -3,6 +3,9 @@ using System.Configuration;
 
 namespace SmsSender.Turkcell
 {
+    /// <summary>
+    /// todo:exception,SmsSenderException'a taşınacak.
+    /// </summary>
     public class TurkcellSmsProvider : BaseSmsProvider
     {
         public override string ProviderName

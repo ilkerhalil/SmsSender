@@ -3,6 +3,9 @@ using System.Configuration;
 
 namespace SmsSender.Vodafone
 {
+    /// <summary>
+    /// todo:exception,SmsSenderException'a taşınacak.
+    /// </summary>
     public class VodafoneSmsProvider : BaseSmsProvider
     {
         public override string ProviderName
