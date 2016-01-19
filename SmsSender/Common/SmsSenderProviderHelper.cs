@@ -10,11 +10,13 @@ namespace SmsSender.Common
 {
     public static class SmsSenderProviderHelper
     {
+        [Obsolete]
         public static BaseSmsProvider CreateInstance(string providerName, params object[] parameters)
         {
             return CreateInstance<BaseSmsProvider>(parameters).Single(s => s.ProviderName == providerName);
         }
 
+        [Obsolete]
         public static IEnumerable<T> CreateInstance<T>(params object[] parameters)
         {
 
