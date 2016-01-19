@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
 
 namespace SmsSender.Avea
 {
@@ -16,11 +13,18 @@ namespace SmsSender.Avea
             }
         }
 
-
-        public AveaSmsProvider(string userName, string password, string header)
-            : base(userName, password, header)
+        public AveaSmsProvider()
         {
+            ProviderInit();
+        }
 
+        protected sealed override void ProviderInit()
+        {
+            var configurationSection = ConfigurationManager.GetSection("AveaSmsConfigSection") as AveaSmsProviderConfigSection;
+            if (configurationSection == null) throw new Exception("Configuration Section boş..!");
+            Header = configurationSection.Header;
+            Password = configurationSection.Password;
+            UserName = configurationSection.UserName;
         }
 
         protected override SmsResponse SendSms(SmsRequest smsRequest)

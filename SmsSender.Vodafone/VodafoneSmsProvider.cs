@@ -13,11 +13,6 @@ namespace SmsSender.Vodafone
         }
 
 
-        public VodafoneSmsProvider(string userName, string password, string header)
-            : base(userName, password, header)
-        {
-
-        }
 
         protected override SmsResponse SendSms(SmsRequest smsRequest)
         {

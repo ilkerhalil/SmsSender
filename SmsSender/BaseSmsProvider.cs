@@ -6,23 +6,16 @@ namespace SmsSender
     public abstract class BaseSmsProvider : ISmsProvider
     {
         public abstract string ProviderName { get; }
-
-        public virtual string UserName { get; private set; }
-        public virtual string Password { get; private set; }
-        public virtual string Header { get; private set; }
-
-        public BaseSmsProvider(string userName, string password, string header)
-        {
-            UserName = userName;
-            Password = password;
-            Header = header;
-        }
+        public virtual string UserName { get; set; }
+        public virtual string Password { get; set; }
+        public virtual string Header { get; set; }
+        protected abstract void ProviderInit();
 
         public virtual IEnumerable<SmsResponse> SendSms(params SmsRequest[] smsRequests)
         {
-            string validationMessage = string.Empty;
             foreach (var smsRequest in smsRequests)
             {
+                string validationMessage;
                 if (!ValidateSmsRequest(smsRequest, out validationMessage))
                 {
                     yield return new SmsResponse { SmsStatus = SmsStatus.Fail, ProviderMessage = validationMessage };
@@ -38,18 +31,18 @@ namespace SmsSender
 
             if (smsRequest == null)
             {
-                validationMessage = string.Format("Sms Request Boş Olamaz | Provider Name {0} \n",ProviderName);
+                validationMessage = string.Format("Sms Request Boş Olamaz | Provider Name {0} \n", ProviderName);
                 return false;
             }
             if (string.IsNullOrWhiteSpace(smsRequest.Content))
             {
-                validationMessage = string.Format("Content Boş Olamaz | Provider Name : {0} ",ProviderName);
+                validationMessage = string.Format("Content Boş Olamaz | Provider Name : {0} ", ProviderName);
                 return false;
             }
             if (string.IsNullOrWhiteSpace(smsRequest.Number))
             {
 
-                validationMessage = string.Format("Number Boş Olamaz | Provider Name : {0} ", ProviderName); 
+                validationMessage = string.Format("Number Boş Olamaz | Provider Name : {0} ", ProviderName);
                 return false;
             }
             if (smsRequest.Content.Length < 3)
@@ -59,8 +52,8 @@ namespace SmsSender
             }
             if (smsRequest.Content.Length > 160)
             {
-                
-                validationMessage = string.Format("Content 160 karakterden fazla olamaz | Provider Name : {0} " ,ProviderName);
+
+                validationMessage = string.Format("Content 160 karakterden fazla olamaz | Provider Name : {0} ", ProviderName);
                 return false;
             }
             if (!Regex.IsMatch(smsRequest.Number, "905[0-9][1-9]{7}"))
@@ -73,7 +66,7 @@ namespace SmsSender
         }
 
         protected abstract SmsResponse SendSms(SmsRequest smsRequest);
-       
+
     }
 
 }

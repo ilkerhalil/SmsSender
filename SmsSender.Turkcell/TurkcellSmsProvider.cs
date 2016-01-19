@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 
 namespace SmsSender.Turkcell
 {
@@ -11,13 +12,15 @@ namespace SmsSender.Turkcell
                 return "Turkcell Sms Provider";
             }
         }
-
-
-        public TurkcellSmsProvider(string userName, string password, string header)
-            : base(userName, password, header)
+        protected sealed override void ProviderInit()
         {
-
+            var configurationSection = ConfigurationManager.GetSection("TurkcellSmsConfigSection") as TurkcellSmsProviderConfigSection;
+            if (configurationSection == null) throw new Exception("Configuration Section boş..!");
+            Header = configurationSection.Header;
+            Password = configurationSection.Password;
+            UserName = configurationSection.UserName;
         }
+
 
         protected override SmsResponse SendSms(SmsRequest smsRequest)
         {
