@@ -35,7 +35,7 @@ namespace SmsSender.Avea
                 Console.WriteLine("{0} numarasına - {1} içerik ile {2} Sms gönderildi.", smsRequest.Number, smsRequest.Content, ProviderName);
                 return new SmsResponse { ProviderMessage = "Success", SmsStatus = SmsStatus.Success };
             }
-            catch (Exception e)
+            catch (System.Exception e)
             {
                 return new SmsResponse
                 {
