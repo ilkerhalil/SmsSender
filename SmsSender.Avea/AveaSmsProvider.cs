@@ -18,11 +18,11 @@ namespace SmsSender.Avea
         {
             ProviderInit();
         }
-
+        
         protected sealed override void ProviderInit()
         {
             var configurationSection = ConfigurationManager.GetSection("AveaSmsConfigSection") as AveaSmsProviderConfigSection;
-            if (configurationSection == null) throw new SmsSenderException("Configuration Section boş..!",ProviderName);
+            if (configurationSection == null) return;
             Header = configurationSection.Header;
             Password = configurationSection.Password;
             UserName = configurationSection.UserName;

@@ -22,8 +22,7 @@ namespace SmsSender.Vodafone
         protected sealed override void ProviderInit()
         {
             var configurationSection = ConfigurationManager.GetSection("AveaSmsConfigSection") as VodafoneSmsProviderConfigSection;
-            if (configurationSection == null)
-                throw new SmsSenderException("Configuration Section boş..!", ProviderName);
+            if (configurationSection == null) return;
             Header = configurationSection.Header;
             Password = configurationSection.Password;
             UserName = configurationSection.UserName;

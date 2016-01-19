@@ -3,6 +3,8 @@ using SmsSender.Common;
 using System.IO;
 using System.Diagnostics;
 using System.Linq;
+using Microsoft.Practices.Unity;
+using SmsSender.IOC;
 
 namespace SmsSender.ConsoleUI
 {
@@ -10,8 +12,12 @@ namespace SmsSender.ConsoleUI
     {
         static void Main(string[] args)
         {
-            var parameters = new string[] { "", "", "" };
-            var providers = SmsSenderProviderHelper.CreateInstance<BaseSmsProvider>("", "", "").ToList();
+            var unityContainer = BootStrap.Init();
+
+            //var parameters = new string[] { "", "", "" };
+
+
+            var providers = unityContainer.ResolveAll<ISmsProvider>().ToList();
             Console.WriteLine("Provider Seçiniz");
 
             foreach (var provider in providers)

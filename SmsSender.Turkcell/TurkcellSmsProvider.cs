@@ -22,7 +22,7 @@ namespace SmsSender.Turkcell
         protected sealed override void ProviderInit()
         {
             var configurationSection = ConfigurationManager.GetSection("TurkcellSmsConfigSection") as TurkcellSmsProviderConfigSection;
-            if (configurationSection == null) throw new SmsSenderException("Configuration Section boş..!",ProviderName);
+            if (configurationSection == null) return;
             Header = configurationSection.Header;
             Password = configurationSection.Password;
             UserName = configurationSection.UserName;
