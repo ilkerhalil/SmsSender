@@ -12,6 +12,12 @@ namespace SmsSender.Turkcell
                 return "Turkcell Sms Provider";
             }
         }
+
+        public TurkcellSmsProvider()
+        {
+            ProviderInit();
+        }
+
         protected sealed override void ProviderInit()
         {
             var configurationSection = ConfigurationManager.GetSection("TurkcellSmsConfigSection") as TurkcellSmsProviderConfigSection;

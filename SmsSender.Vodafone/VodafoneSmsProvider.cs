@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 
 namespace SmsSender.Vodafone
 {
@@ -12,8 +13,19 @@ namespace SmsSender.Vodafone
             }
         }
 
+        public VodafoneSmsProvider()
+        {
+            ProviderInit();
+        }
 
-
+        protected sealed override void ProviderInit()
+        {
+            var configurationSection = ConfigurationManager.GetSection("AveaSmsConfigSection") as VodafoneSmsProviderConfigSection;
+            if (configurationSection == null) throw new Exception("Configuration Section boş..!");
+            Header = configurationSection.Header;
+            Password = configurationSection.Password;
+            UserName = configurationSection.UserName;
+        }
         protected override SmsResponse SendSms(SmsRequest smsRequest)
         {
             try

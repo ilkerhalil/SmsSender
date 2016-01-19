@@ -1,8 +1,8 @@
 ﻿using System.Configuration;
 
-namespace SmsSender.Turkcell
+namespace SmsSender.Vodafone
 {
-    public class TurkcellSmsProviderConfigSection:ConfigurationSection
+    public class VodafoneSmsProviderConfigSection : ConfigurationSection
     {
         [ConfigurationProperty("UserName", IsRequired = true)]
         public string UserName
