@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Configuration;
 using SmsSender.Exception;
+using SmsSender.Logger;
 
 namespace SmsSender.Avea
 {
     public class AveaSmsProvider : BaseSmsProvider
     {
-        public override string ProviderName
-        {
-            get
-            {
-                return "Avea Sms Provider";
-            }
-        }
+        public override string ProviderName => "Avea Sms Provider";
 
         public AveaSmsProvider()
         {
             ProviderInit();
         }
-        
+
         protected sealed override void ProviderInit()
         {
             var configurationSection = ConfigurationManager.GetSection("AveaSmsConfigSection") as AveaSmsProviderConfigSection;
@@ -39,7 +34,7 @@ namespace SmsSender.Avea
             {
                 return new SmsResponse
                 {
-                    ProviderMessage = string.Format("Fail..! - {0}", e),
+                    ProviderMessage = $"Fail..! - {e}",
                     SmsStatus = SmsStatus.Fail
                 };
             }

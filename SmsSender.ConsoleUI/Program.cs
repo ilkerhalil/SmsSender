@@ -20,7 +20,7 @@ namespace SmsSender.ConsoleUI
             //var parameters = new string[] { "", "", "" };
 
 
-            
+
 
             var providers = unityContainer.ResolveAll<ISmsProvider>().ToList();
             Console.WriteLine("Provider Seçiniz");
@@ -57,11 +57,11 @@ namespace SmsSender.ConsoleUI
             Console.WriteLine("Telefon numarası giriniz");
             string phoneNumber = Console.ReadLine();
             Console.WriteLine("Göndermek istediğiniz mesajı giriniz");
-            string messageContent = Console.ReadLine();
+            var messageContent = Console.ReadLine();
 
             index--;
-            BaseSmsProvider selectedProvider = SmsSenderProviderHelper.CreateInstance(providers[index].ProviderName, username, password, header);
-            var smsResponses = selectedProvider.SendSms(new SmsRequest() { Content = messageContent, Number = phoneNumber });
+            // BaseSmsProvider selectedProvider = SmsSenderProviderHelper.CreateInstance(providers[index].ProviderName, username, password, header);
+            var smsResponses = providers[index].SendSms(new SmsRequest { Content = messageContent, Number = phoneNumber });
 
 
             foreach (var smsResponse in smsResponses) Console.WriteLine(smsResponse.ProviderMessage);

@@ -8,6 +8,8 @@ namespace SmsSender
 {
     public abstract class BaseSmsProvider : ISmsProvider
     {
+
+
         public abstract string ProviderName { get; }
         public virtual string UserName { get; set; }
         public virtual string Password { get; set; }

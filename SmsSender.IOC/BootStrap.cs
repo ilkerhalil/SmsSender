@@ -1,10 +1,6 @@
 ﻿using System.Configuration;
-using System.Runtime.InteropServices;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
-using SmsSender.Avea;
-using SmsSender.Turkcell;
-using SmsSender.Vodafone;
 
 namespace SmsSender.IOC
 {
@@ -18,7 +14,7 @@ namespace SmsSender.IOC
             //unityContainer.RegisterType<ISmsProvider, TurkcellSmsProvider>("turkcellSmsProvider");
 
             var unityConfSec = ConfigurationManager.GetSection("unity") as UnityConfigurationSection;
-            if (unityConfSec != null) unityConfSec.Configure(unityContainer);
+            unityConfSec?.Configure(unityContainer);
             return unityContainer;
         }
     }

@@ -50,6 +50,11 @@
     <Compile Include="Common\SmsSenderProviderHelper.cs" />
     <Compile Include="ISmsProvider.cs" />
     <Compile Include="BaseSmsProvider.cs" />
+    <Compile Include="Logger\BaseLogger.cs" />
+    <Compile Include="Logger\ConsoleLogger.cs" />
+    <Compile Include="Logger\FileLogger.cs" />
+    <Compile Include="Logger\ILogger.cs" />
+    <Compile Include="Logger\LogSeverity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Exception\SmsSenderException.cs" />
     <Compile Include="Types\SmsResponse.cs" />
